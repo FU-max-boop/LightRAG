@@ -29,6 +29,23 @@ Fail the command when a blocking readiness issue is found:
 python lightrag/evaluation/preflight_eval_readiness.py --strict
 ```
 
+## Optional Offline Retrieval Audit
+
+Before running RAGAS or a live LightRAG server, you can run a deterministic
+retrieval sanity check over the bundled sample questions and sample documents:
+
+```bash
+python lightrag/evaluation/offline_retrieval_audit.py \
+  --top-k 2 \
+  --output-json lightrag/evaluation/results/offline_retrieval_audit.json \
+  --output-md lightrag/evaluation/results/offline_retrieval_audit.md
+```
+
+The audit uses `sample_retrieval_oracle.json` to map each sample question to the
+document(s) that should be retrievable, then reports recall@k and MRR with a
+small deterministic BM25-style lexical scorer. It does not start LightRAG, call
+RAGAS, compute embeddings, or call LLMs.
+
 ## What It Checks
 
 - Dataset JSON exists and has a `test_cases` list.
