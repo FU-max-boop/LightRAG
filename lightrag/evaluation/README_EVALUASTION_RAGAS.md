@@ -54,6 +54,16 @@ pip install -e ".[evaluation]"
 
 ### 2. Run Evaluation
 
+**Optional preflight (no API calls):**
+```bash
+python lightrag/evaluation/preflight_eval_readiness.py
+```
+
+The preflight checks dataset structure, sample documents, evaluation
+dependencies, API-key environment variables, numeric tuning variables, and the
+LightRAG endpoint URL format before you spend time or model calls on RAGAS.
+Use `--output-json`, `--output-md`, or `--strict` for CI/debugging workflows.
+
 **Basic usage (uses defaults):**
 ```bash
 cd /path/to/LightRAG
